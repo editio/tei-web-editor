@@ -1,0 +1,114 @@
+{
+  "exercises": [
+    {
+      "id": "ex1",
+      "title": "Exercise 1 · Basic encoding (Lope de Vega's sonnet)",
+      "folder": "exercises/ex1",
+      "css": "visualize-tei-xml.css",
+      "newDocument": "empty_tei_all.xml",
+      "files": [
+        {
+          "file": "1.3-Lope-sonnet-empty.xml",
+          "label": "1.3 Sonnet: empty structure (help)"
+        },
+        {
+          "file": "1.4-Lope-sonnet-1822-done.xml",
+          "label": "1.4 Sonnet: solution"
+        },
+        {
+          "file": "1.5.-FirstOption-TheaterPlay.xml",
+          "label": "1.5 Theatre play (option 1)"
+        }
+      ],
+      "resources": [
+        {
+          "file": "1.0-Instructions-BasicEncoding.pdf",
+          "label": "Instructions (PDF)"
+        },
+        {
+          "file": "2.0-Homework-BasicEncoding.pdf",
+          "label": "Homework (PDF)"
+        },
+        {
+          "file": "1.1-Lope-sonnet-1822-Transcript.txt",
+          "label": "Transcript, French 1822"
+        },
+        {
+          "file": "1.2-Lope_sonnet_1822.pdf",
+          "label": "Scan, French 1822 (PDF)"
+        },
+        {
+          "file": "Lope_soneto_1617_es/1.1-Lope-sonnet-1617-Transcript.txt",
+          "label": "Transcript, Spanish 1617"
+        },
+        {
+          "file": "Lope_soneto_1617_es/1.2-Lope_sonnet_1617.pdf",
+          "label": "Scan, Spanish 1617 (PDF)"
+        },
+        {
+          "file": "Lope_Sonett_1773_de/1.1-Lope-1773-Transcript.txt",
+          "label": "Transcript, German 1773"
+        },
+        {
+          "file": "Lope_Sonett_1773_de/1.2-Lope-1773.pdf",
+          "label": "Scan, German 1773 (PDF)"
+        },
+        {
+          "file": "Lope_sonnet_en/1.1-Lope_Gibson-Transcript.txt",
+          "label": "Transcript, English (Gibson)"
+        },
+        {
+          "file": "Lope_sonnet_en/1.2-Lope_Gibson.pdf",
+          "label": "Scan, English (Gibson) (PDF)"
+        }
+      ]
+    },
+    {
+      "id": "ex3",
+      "title": "Exercise 3 · Named entities (Stendhal, Mémoires)",
+      "folder": "exercises/ex3",
+      "css": "visualize-tei-xml.css",
+      "newDocument": "empty_tei_all.xml",
+      "files": [
+        {
+          "file": "3.4-Stendhal_Memoires_1838_empty.xml",
+          "label": "3.4 Stendhal: empty structure (help)"
+        }
+      ],
+      "resources": [
+        {
+          "file": "3.0-Instructions-NamedEntities.pdf",
+          "label": "Instructions (PDF)"
+        },
+        {
+          "file": "2.0-Homework-BasicEncoding.pdf",
+          "label": "Homework (PDF)"
+        },
+        {
+          "file": "3.1.Stendhal_Memoires_1838_transcript.txt",
+          "label": "Transcript, French 1838"
+        },
+        {
+          "file": "3.2.Stendhal_Memoires_1838.pdf",
+          "label": "Scan, French 1838 (PDF)"
+        },
+        {
+          "file": "3.3-Stendhal_Memoires_german_Transcript.txt",
+          "label": "Transcript, German translation"
+        },
+        {
+          "file": "3.3-Stendhal_Memoires_german_Original.pdf",
+          "label": "Scan, German translation (PDF)"
+        },
+        {
+          "file": "stendhal_persons.csv",
+          "label": "Persons (table)"
+        },
+        {
+          "file": "stendhal_places.csv",
+          "label": "Places (table)"
+        }
+      ]
+    }
+  ]
+}

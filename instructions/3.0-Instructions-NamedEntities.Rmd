@@ -1,0 +1,156 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# EXERCISE 03 Named entities - INSTRUCTIONS:
+
+## TOOL (Creating a new TEI-XML File)
+
+- Open the **TEI Web Editor** in your web browser: <https://editio.github.io/tei-web-editor/>. Nothing needs to be installed.
+- Select "Exercise 3" in the *Exercise* menu (top left).
+- The editor opens a new TEI All document for you, `empty_tei_all.xml`. You can rename it in the *File name* box, e.g., `stendhal.xml`. (To start another document, click **New**.)
+- Tip! Your work is saved automatically **in this browser only**. Click **Download** to keep a copy of your file (see SAVING YOUR WORK at the end).
+
+All the materials (instructions, scans, transcriptions and tables) are in the **Materials** tab on the right.
+
+## TRANSCRIPTION
+
+- No need to transcribe (no time for that now), just have a look at the transcription provided "Transcript, French 1838" (Materials tab). The text has 3 paragraphs, so we need 3 `<p>` elements.
+- Remove the dummy text "Some text here." between the opening `<p>` and the closing `</p>` within the `<body>` element. Add 2 more `<p>` elements (opening and closing).
+- Copy (click **Copy text** in the Materials tab) and paste each paragraph from the transcription.
+- There are other ways of doing all this: copy and paste the entire text within a `<p>` `</p>`, put the cursor at the beginning of each paragraph and click **Split element** in the toolbar (or press Alt + Shift + D).
+
+The document should now be well-formed (the **Well-formed** indicator in the toolbar is green).
+
+- Tip! To format and indent the encoding, click **Format & indent** in the toolbar, or press Cmd + Shift + F (Mac), Ctrl + Shift + F (Windows).
+
+## ENCODING
+
+You are encoding in the `<body>` names of places, names of people, and dates, so you need to add these elements:
+
+- `<placeName>`, `<persName>` and `<date>`.
+- Tip! Remember the shortcut: Highlight the place (person or date), press Ctrl + E (Windows) or Cmd + E (Mac), start typing 'pl..' and press Enter after selecting your element.
+
+Let's add now the metadata about the named entities (places and persons) in the `<teiHeader>`. After this is done, you will be able to link this information to each element in the text. For now, you need to add these elements:
+
+- `<profileDesc>` describes non-bibliographic aspects of a text.
+    - `<particDesc>` persons named in the text.
+        - `<listPerson>` list of persons.
+            - `<person>`  information about a person.
+    - `<settingDesc>`  places named in the text.
+        - `<listPlace>` list of places.
+            - `<place>` information about a place.
+
+
+- Start adding `<profileDesc>` just after `</fileDesc>` and before `</teiHeader>`.
+- Tip! Place the cursor right after `</fileDesc>` (or at the next line) and start typing `<` (angle bracket): the editor suggests a list of element names available at this point. Hover over a suggestion to read its definition from the TEI Guidelines.
+- Add the elements `<particDesc>` and `<settingDesc>` within `<profileDesc>`.
+- Add the element `<listPerson>` within `<particDesc>`.
+- Add the element `<listPlace>` within `<settingDesc>`.
+
+Don't worry about the red **Invalid TEI** indicator, some mandatory elements are still missing (the **Problems** tab tells you which ones). Add `<person>` within the element `<listPerson>`, and `<place>` within the element `<listPlace>`. The structure should now be well-formed and look like:
+
+```xml
+<profileDesc>
+   <particDesc>
+      <listPerson>
+        <person></person>
+      </listPerson>
+   </particDesc>
+   <settingDesc>
+      <listPlace>
+        <place></place>
+      </listPlace>
+   </settingDesc>
+</profileDesc>
+```
+
+There are 4 places and 4 person names in the text. For now let's gather the information about one of each kind: Paris and Tocqueville.
+
+### Encoding places
+
+Let's start with **Paris**. We are interested in encoding its location in terms of latitude and longitude. To obtain coordinates you can search a geographical database (gazetteer), e.g., GeoNames: <https://www.geonames.org/2988507>. You should end up collecting the following information, which you are going to encode in the element `<place>`.
+
+| _place name_ | _coordinates_ | _geonames-id_ | _country_ | _your own id_ |
+|---|---|---|---|---|
+| Paris | 48.85341 2.3488 | 2988507 | France | paris |
+
+
+Within the element `<place>` you need to add the following elements and complete the information from the table:
+
+- `<placeName>`
+- `<country>`
+- `<location>`
+    - `<geo>` (latitude and longitude separated by a space, inside `<location>`)
+- `<idno>` (a standardized id, in this case from GeoNames)
+
+Unique identifier. In order to link `<place>` from the header to the element `<placeName>` in the text, we need to specify a **unique identifier** for the element you have just created. We use attributes for this:
+
+- Add the attribute `@xml:id` to the element `<place>` and choose your own unique value, e.g., "paris". You should have now `<place xml:id="paris">`.
+- Tip! Put the cursor inside the element just before `>` (`<place↑>`), and press space; the editor suggests a list of attributes available for this element.
+
+- `<idno>` This element also needs an attribute and a value to supply the information, e.g.: `type="GeoNames"`.
+
+Internal linking. Now that you have defined the place, in this case, Paris, and supplied a unique identifier, you can link this element with all place names in your text that refer to Paris:
+
+- To do the linking, add the attribute `@ref` containing the value of the `@xml:id` (i.e., "paris") preceded by a hash (`#`). You should have now `<p>À <placeName ref="#paris">Paris</placeName>, la distraction est trop [...]`.
+- Tip! Put the cursor inside the element just before `>` (`<placeName↑>`), and press space; the editor suggests a list of attributes available for this element. Choose `@ref`: automatically the editor will suggest the identifiers you have created in the header (`#paris`).
+
+### Encoding persons
+
+Let's continue with a person name, **Tocqueville**.  Wikipedia may be there always to help, but a good source for the basic information are the authority files run by national libraries, e.g., the data service of the _Bibliothèque nationale de France_, <https://data.bnf.fr>. The international authority files, like ISNI <http://www.isni.org/isni/0000000121371933> gather several of these sources.
+
+So once you have collected the information you want to add, encode them in the element `<person>`.
+
+| _person name_ | _birth_ | _death_ | _occupation_ | _nationality_ | _your own id_ |
+|---|---|---|---|---|---|
+| Alexis de Tocqueville | 29 July 1805 | 16 April 1859 | historian | French | AT1805 |
+
+| _ISNI id_ |
+|---|
+| 0000000121371933 |
+
+Within the element `<person>` you need to add the following elements and complete the information from the table:
+
+- `<persName>`
+- `<birth>`
+- `<death>`
+- `<occupation>`
+- `<nationality>`
+- `<idno>` (a standardized id, in this case ISNI).
+
+Unique identifier. As we did with `<place>` we need to specify a **unique identifier** for `<person>`. It is up to you which one you want to use, e.g., the initials plus the date of birth: AT1805 (**A**lexis de **T**ocqueville **1805**).
+
+- You should have now `<person xml:id="AT1805">`.
+
+You probably added the date of birth like `<birth>29 July 1805</birth>`. In fact you can write it as you prefer: 29 juillet 1805, 29.07.1805, etc., but in order to record the date properly, we need to use the attribute `@when` with a value in a standard form (YYYY-MM-DD): 1805-07-29. So you should have `<birth when="1805-07-29">29 July 1805</birth>`.
+
+- Keep tagging all dates with the attribute `@when`, also in your text.
+
+Internal linking. Now that you have defined the person, in this case, Tocqueville, and supplied a unique identifier, you can link this element with the names in your text, which refer to Tocqueville:
+
+- Proceed in the same way you did with `<place>` and remember the tip about putting the cursor inside the element (or inside the attribute value).
+
+
+### Already done?
+
+- (1 option) Search for information about Charles Louis de Montesquieu, Pierre Bayle, Lyon, Marseille, Grenoble, and keep tagging (the tables "Persons" and "Places" in the Materials tab can help you)... Not your thing?
+- (2 option) Could you improve the encoding of `<persName>` with forename and surname?
+- (3 option) You could also add to the person list the information about the author, Stendhal, which is in fact a pseudonym; his real name was [Marie-Henri Beyle](https://data.bnf.fr/en/11925504). How do we encode a pseudonym? Check the [TEI Guidelines for 13.2.1 Personal Names](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER).
+- (4 option) Visualize your data. Nothing fancy here, but you can easily spot the names, places and dates.
+
+## VISUALIZATION
+
+- Follow the steps as in exercise 1: link the stylesheet with `<?xml-stylesheet type="text/css" href="visualize-tei-xml.css"?>` just before the `<TEI>` root element, and open the **Preview** tab on the right (and the **CSS** tab to change the stylesheet).
+
+## EXERCISE SOLUTION
+
+- I provided you with a TEI-XML file already encoded, "3.4-Stendhal_Memoires_1838_done.xml". Feel free to have a look inside or ask me for help.
+
+## SAVING YOUR WORK
+
+- The editor saves your work automatically, but **only in this browser on this computer** ("Saved in this browser" at the bottom right). It is lost if you use another computer, a private window, or if the browser data is deleted.
+- To keep your file, click **Download** (or press Ctrl + S / Cmd + S). You get a normal `.xml` file in your Downloads folder. You can change the name in the *File name* box before downloading.
+- To continue working on a downloaded file later (or on another computer), click **Open…** and choose the file.

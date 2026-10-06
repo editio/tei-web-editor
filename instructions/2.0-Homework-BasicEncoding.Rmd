@@ -1,0 +1,41 @@
+
+
+# HOMEWORK – TEI-XML Encoding
+
+## Objective
+
+This homework lets you either revisit what you have done in class or go one step further. Choose **one** of the two options below:
+
+- **Option A**: the exercise in class was challenging (e.g., you could not finish all the options)? Redo it with the sonnet in another language.
+- **Option B**: was the exercise in class easy? Take it further and encode named entities (persons, places, dates).
+
+Work in the **TEI Web Editor** (<https://editio.github.io/tei-web-editor/>), as in class. Nothing needs to be installed.
+
+## Option A – Encode the sonnet in another language
+
+Follow the instructions of Exercise 1 again (Exercise 1 → Materials → "Instructions (PDF)"), this time with the sonnet in a **different language** from the one you did in class: French, Spanish, German or English. For each language you will find a scan and a transcription in the **Materials** tab of Exercise 1.
+
+Your document must:
+
+- contain the 14 verse lines, each encoded with `<l>` and a line number `@n`
+- encode the sonnet, quatrains and tercets with `<lg>` and `@type`
+- include a title and author in `<titleStmt>`
+- include the bibliographic information of the source in `<sourceDesc>` (see option 3 of the class exercise)
+
+## Option B – Encode named entities
+
+Follow the instructions of Exercise 3 (Exercise 3 → Materials → "Instructions (PDF)"). You will encode persons, places and dates in a text by Stendhal and link them to a list of persons and places in the `<teiHeader>`.
+
+Your document must:
+
+- encode the names of persons, places and dates in the text with `<persName>`, `<placeName>` and `<date>`
+- include at least one `<person>` and one `<place>` in the `<teiHeader>` with a unique `@xml:id` and a standard identifier (`<idno>`, e.g., GeoNames or ISNI)
+- link the names in the text to the header with `@ref`
+
+## Submission
+
+Submit your final TEI-XML document as a **well-formed** `.xml` file that is **valid** against TEI All: both indicators in the editor's toolbar, **Well-formed** and **Valid TEI**, must be green. Name it after your last name and the option you chose, e.g., `Lastname_OptionA.xml` or `Lastname_OptionB.xml`.
+
+To get the file: type the name in the *File name* box at the top of the editor and click **Download** (or press Ctrl + S / Cmd + S). The file is saved in your Downloads folder.
+
+Remember: the editor saves your work only in the browser you are using. If you change computer or browser, click **Download** first, and then **Open…** the file on the other computer.

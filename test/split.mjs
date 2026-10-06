@@ -1,0 +1,28 @@
+import puppeteer from 'puppeteer-core';
+const out = process.argv[2];
+const browser = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new' });
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900 });
+const errs = []; page.on('pageerror', e => errs.push(e.message));
+await page.goto('http://localhost:8765/', { waitUntil: 'networkidle0' });
+await page.evaluate(() => localStorage.removeItem('teiwe:split'));
+await page.reload({ waitUntil: 'networkidle0' });
+await page.click('[data-tab=preview]');
+await new Promise(r => setTimeout(r, 800));
+const w = () => page.$eval('.editor-pane', e => Math.round(e.getBoundingClientRect().width));
+console.log('start editor width', await w());
+const b = await page.$eval('#splitter', e => { const r = e.getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + 300 }; });
+await page.mouse.move(b.x, b.y); await page.mouse.down();
+await page.mouse.move(1100, b.y, { steps: 10 });   // over the preview iframe area
+await page.mouse.move(400, b.y, { steps: 20 });
+await page.mouse.up();
+console.log('after drag to 400px:', await w(), 'saved', await page.evaluate(() => localStorage.getItem('teiwe:split')));
+await page.screenshot({ path: out + '/split.png' });
+await page.reload({ waitUntil: 'networkidle0' });
+console.log('after reload:', await w());
+await page.focus('#splitter'); for (let i = 0; i < 3; i++) await page.keyboard.press('ArrowRight');
+console.log('after 3x ArrowRight:', await w());
+await page.click('#splitter'); await page.click('#splitter');
+console.log('after double-click reset:', await w());
+console.log('errors', errs);
+await browser.close();

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<?xml-stylesheet type="text/css" href="visualize-tei-xml.css"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>EXERCISE 01 · Encodage de base</title>
+            <author/>
+         </titleStmt>
+         <publicationStmt>
+            <publisher/>
+            <date/>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title/>
+               <author/>
+               <editor/>
+               <pubPlace/>
+               <publisher/>
+               <date/>
+            </bibl>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <pb n="362"/>
+         <fw>LA PERLE DE SÈVILLE,</fw>
+         <sp>
+            <speaker>DON JUAN.</speaker>
+            <p>As tu été poëte?</p>
+         </sp>
+         <sp>
+            <speaker>CHACON.</speaker>
+            <p>Quatre fois. La première m'a coûté des coups de bâton. La deuxième de prêtes vinrent m'exorciser come si j'avais eu le diable
+               dans le corps. La troisième, on me chassa de l'endroit, comme si j'avais la peste. La quatrième, il faut tout dire, un sonnet
+               me valut une paire de gants.</p>
+         </sp>
+         <sp>
+            <speaker>DON JUAN.</speaker>
+            <p>Voyons ce sonnet.</p>
+         </sp>
+         <sp>
+            <speaker>CHACON.</speaker>
+            <p>Le voulez-vous?</p>
+         </sp>
+         <sp>
+            <speaker>DON JUAN.</speaker>
+            <p>Oui</p>
+         </sp>
+         <sp>
+            <speaker>CHACON.</speaker>
+            <p>Allons.</p>
+         </sp>
+         <sp>
+            <speaker>DON JUAN.</speaker>
+            <p>Quel est le sujet?</p>
+         </sp>
+         <sp>
+            <speaker>CHACON.</speaker>
+            <p>Le sonnet lui-même.</p>
+            <lg type="sonnet">
+               <lg type="quatrain">
+                  <l n="1">Doris, qui sait qu'aux vers quelquefois je me plais,</l>
+                  <l n="2">Me demande un sonnet, et je m'en désespère:</l>
+                  <l n="3">Quatorze vers, grand Dieu! Le moyen de les faire?</l>
+                  <l n="4">En voilà cependant déjà quatre de faits.</l>
+               </lg>
+               <lg type="quatrain">
+                  <l n="5">Je ne pouvais d'abord trouver de rime, mais</l>
+                  <l n="6">En faisant on apprend à se tirer d'affaire.</l>
+                  <l n="7">Poursuivons: les quatrains ne m'étonneront guère</l>
+                  <l n="8">Si du premier tercet je puis faire les frais.</l>
+               </lg>
+               <lg type="tercet">
+                  <l n="9">Je commence au hasard, et, si je ne m'abuse,</l>
+                  <l n="10">Je n'ai point commencé sans l'aveu de ma muse,</l>
+                  <l n="11">Puisqu'en si peu de temps je me tire du net.</l>
+               </lg>
+               <lg type="tercet">
+                  <l n="12">J'entame le second, et ma joie est extrême;</l>
+                  <l n="13">Car des vers commandés j'achève le treizième;</l>
+                  <l n="14">Comptez s'ils sont quatorze, et voilà le sonnet.</l>
+               </lg>
+            </lg>
+         </sp>
+      </body>
+   </text>
+</TEI>

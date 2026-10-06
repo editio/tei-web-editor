@@ -1,0 +1,49 @@
+---- Normalised ----
+
+Du forderst ein Sonett von mir,
+Du weißt, wie schwer ich dieses finde,
+Darum, du lose Rosalinde,
+Versprichst du einen Kuss dafür.
+
+Was ist, um einen Kuss von dir,
+Das sich Myrtill nicht unterstünde?
+Ich glaube fast, ich überwinde,
+Sieh, zwei Quadrains stehn ja schon hier!
+
+Auf einmal hört es auf zu fließen!
+Nun werd' ich doch verzagen müssen!
+Doch nein, hier ist schon ein Terzett.
+
+Nur beb' ich doch – wie werd ich schließen?
+Komm, Rosalinde, lass dich küssen!
+Hier, Schönste, hast du dein Sonett.
+
+
+---- Original ----
+
+Du forderſt ein Sonnett von mir;
+Du weißt, wie ſchwer ich die=ſes finde,
+Darum, du loſe Roſalinde,
+Verſprichſt du einen Kuß dafuͤr.
+
+Was iſt, um einen Kuß von dir,
+Das ſich Myrtill nicht unterſtuͤnde?
+Ich glaube faſt, ich uͤberwinde;
+Sieh, zwey Quadrains ſtehen ja ſchon hier!
+
+Auf Einmal hoͤrt es auf zu flieſſen!
+Nun werd' ich doch verzagen muͤſſen!
+Doch nein, hier iſt ſchon Ein Terzett.
+
+Nur beb' ich doch – Wie werd ich ſchlieſſen?
+Komm, Roſalinde, laß dich kuͤſſen! -
+Hier, Schoͤnſte, haſt du dein Sonnett.
+
+
+Source:
+Daniel Schiebeler, Auserlesene gedichte, Johann Joachim Eschenburg (ed.), Hamburg, Bode, 1773, pp. 175-176 https://mdz-nbn-resolving.de/details:bsb10119115  (Seite: https://www.digitale-sammlungen.de/view/bsb10119115?page=225)
+
+Umlaute mit hochgestelltem e: &#x0364;  
+Langes S: &#x17F;
+
+oXygen: edit > insert from character map > Combining Latin Small Letter E | Latin Small Letter Long S

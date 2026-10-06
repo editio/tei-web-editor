@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TEI Web Editor</title>
+  <meta name="description" content="Edit TEI XML in the browser with live validation against TEI All. Nothing to install.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23234e8c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' text-anchor='middle' fill='white'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">&lt;/&gt;</span>
+      <span class="brand-name">TEI Web Editor</span>
+    </div>
+
+    <div class="doc-controls">
+      <label class="field">
+        <span class="field-label">Exercise</span>
+        <select id="exercise-select"></select>
+      </label>
+      <label class="field">
+        <span class="field-label">Document</span>
+        <select id="doc-select"></select>
+      </label>
+      <label class="field field-filename">
+        <span class="field-label">File name</span>
+        <input id="filename" type="text" spellcheck="false" autocomplete="off">
+      </label>
+    </div>
+
+    <div class="file-actions">
+      <button id="btn-new" class="btn" type="button" title="New document from the TEI All template">New</button>
+      <button id="btn-open" class="btn" type="button" title="Open an XML file from your computer">Open…</button>
+      <button id="btn-download" class="btn btn-primary" type="button" title="Download the XML file (Ctrl/Cmd+S)">Download</button>
+      <button id="btn-reset" class="btn btn-quiet" type="button" title="Restore the original exercise file">Reset</button>
+      <button id="btn-delete" class="btn btn-quiet" type="button" title="Delete this document from the browser" hidden>Delete</button>
+      <input id="file-input" type="file" accept=".xml,.tei,text/xml,application/xml" hidden>
+    </div>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Editing">
+    <button id="btn-wrap" class="tool" type="button" title="Surround the selection with an element (Ctrl/Cmd+E)">
+      <span>Surround with element</span><kbd>⌘/Ctrl E</kbd>
+    </button>
+    <button id="btn-suggest" class="tool" type="button" title="Show what is allowed at the cursor (Ctrl+Space)">
+      <span>Suggest</span><kbd>Ctrl Space</kbd>
+    </button>
+    <button id="btn-split" class="tool" type="button" title="Split the element at the cursor into two (Alt+Shift+D)">
+      <span>Split element</span><kbd>Alt ⇧ D</kbd>
+    </button>
+    <button id="btn-format" class="tool" type="button" title="Format and indent (Ctrl/Cmd+Shift+P or Ctrl/Cmd+Shift+F)">
+      <span>Format &amp; indent</span><kbd>⌘/Ctrl ⇧ F</kbd>
+    </button>
+    <div class="status" aria-live="polite">
+      <span id="status-wf" class="status-pill muted"><span class="dot" aria-hidden="true"></span><span class="label">Checking…</span></span>
+      <span id="status-valid" class="status-pill muted"><span class="dot" aria-hidden="true"></span><span class="label">Loading TEI schema…</span></span>
+    </div>
+  </div>
+
+  <main class="workspace">
+    <section class="editor-pane" aria-label="XML editor">
+      <div id="editor"></div>
+    </section>
+
+    <div id="splitter" class="splitter" role="separator" aria-orientation="vertical" aria-label="Resize editor and panels" aria-valuemin="20" aria-valuemax="80" tabindex="0" title="Drag to resize (double-click to reset)"></div>
+
+    <section class="side-pane" aria-label="Tools">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" data-tab="problems" aria-controls="panel-problems">Problems <span id="problems-count" class="badge" hidden></span></button>
+        <button class="tab" role="tab" data-tab="xpath" aria-controls="panel-xpath">XPath</button>
+        <button class="tab" role="tab" data-tab="preview" aria-controls="panel-preview">Preview</button>
+        <button class="tab" role="tab" data-tab="css" aria-controls="panel-css">CSS</button>
+        <button class="tab" role="tab" data-tab="resources" aria-controls="panel-resources">Materials</button>
+        <button class="tab" role="tab" data-tab="help" aria-controls="panel-help">Help</button>
+      </div>
+
+      <div id="panel-problems" class="panel" role="tabpanel">
+        <p id="problems-empty" class="empty"></p>
+        <ul id="problems-list" class="problems"></ul>
+      </div>
+
+      <div id="panel-xpath" class="panel" role="tabpanel" hidden>
+        <form id="xpath-form" class="xpath-form">
+          <input id="xpath-input" type="text" spellcheck="false" autocomplete="off" placeholder="//l[@n=&quot;2&quot;]" aria-label="XPath expression">
+          <button class="btn btn-primary" type="submit">Run</button>
+        </form>
+        <div class="examples">
+          <span class="muted">Try:</span>
+          <button type="button" class="xpath-example">//l</button>
+          <button type="button" class="xpath-example">//l[@n="2"]</button>
+          <button type="button" class="xpath-example">//lg[@type="tercet"]/l</button>
+          <button type="button" class="xpath-example">count(//l)</button>
+          <button type="button" class="xpath-example">//persName</button>
+          <button type="button" class="xpath-example">//placeName/@ref</button>
+          <button type="button" class="xpath-example">//*[@xml:id]</button>
+        </div>
+        <div id="xpath-results" class="xpath-results"></div>
+        <p class="footnote">You don't need a <code>tei:</code> prefix. The browser supports XPath&nbsp;1.0, so XPath&nbsp;2.0 functions such as <code>tokenize()</code> are not available.</p>
+      </div>
+
+      <div id="panel-preview" class="panel panel-fill" role="tabpanel" hidden>
+        <div class="panel-actions">
+          <span class="muted">Your document as a web browser shows it, styled by the stylesheet it links to.</span>
+          <span class="spacer"></span>
+          <button id="btn-preview-refresh" class="btn btn-small" type="button">Refresh</button>
+          <button id="btn-preview-open" class="btn btn-small" type="button">Open in new tab ↗</button>
+        </div>
+        <div id="preview-banner" class="preview-banner" role="status" hidden></div>
+        <p id="preview-msg" class="empty" hidden></p>
+        <pre id="preview-raw" class="preview-raw" hidden></pre>
+        <iframe id="preview-frame" class="preview-frame" title="Preview"></iframe>
+      </div>
+
+      <div id="panel-css" class="panel panel-fill" role="tabpanel" hidden>
+        <div class="panel-actions">
+          <span class="muted">Edit <code>visualize-tei-xml.css</code> and watch the Preview change (once your document links to it).</span>
+          <span class="spacer"></span>
+          <button id="btn-css-reset" class="btn btn-small" type="button">Restore original</button>
+        </div>
+        <div id="css-editor" class="css-editor"></div>
+      </div>
+
+      <div id="panel-resources" class="panel" role="tabpanel" hidden>
+        <ul id="resource-list" class="resource-list"></ul>
+        <div id="resource-view" class="resource-view"></div>
+      </div>
+
+      <div id="panel-help" class="panel" role="tabpanel" hidden>
+        <div class="help">
+          <h2>How it works</h2>
+          <ul>
+            <li>Your document is checked while you type. The first indicator turns <b class="ok-text">green</b> when the XML is <b>well-formed</b>; the second when it is <b>valid against TEI All</b>.</li>
+            <li>Errors are underlined in red. Hover over them, or open the <b>Problems</b> tab and click an error to jump to it.</li>
+            <li>Type <kbd>&lt;</kbd> to see the elements allowed at that point. Type a space inside a start tag to see its attributes. Inside <code>ref=""</code> you get the <code>xml:id</code>s defined in your document.</li>
+            <li>Hover over a tag name to read its definition from the TEI Guidelines.</li>
+            <li>Drag the bar between the editor and these panels to resize them (double-click it to reset).</li>
+            <li>Your work is saved <b>in this browser only</b>. Click <b>Download</b> to keep a copy or hand it in.</li>
+          </ul>
+          <h2>Keyboard shortcuts</h2>
+          <table class="keys">
+            <tr><td><kbd>Ctrl/Cmd</kbd> + <kbd>E</kbd></td><td>Surround the selection with an element</td></tr>
+            <tr><td><kbd>Ctrl</kbd> + <kbd>Space</kbd></td><td>Show suggestions</td></tr>
+            <tr><td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd></td><td>Split element at the cursor</td></tr>
+            <tr><td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd></td><td>Format and indent</td></tr>
+            <tr><td><kbd>Ctrl/Cmd</kbd> + <kbd>/</kbd></td><td>Comment / uncomment</td></tr>
+            <tr><td><kbd>Ctrl/Cmd</kbd> + <kbd>F</kbd></td><td>Find and replace</td></tr>
+            <tr><td><kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd></td><td>Undo</td></tr>
+            <tr><td><kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd></td><td>Download the file</td></tr>
+          </table>
+          <h2>About</h2>
+          <p class="muted">Validation runs entirely in your browser against the TEI All Relax&nbsp;NG schema (<span id="schema-version"></span>). Nothing is sent to a server. Schematron rules embedded in TEI All are not checked.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="statusbar">
+    <span id="cursor-pos">Line 1, Col 1</span>
+    <span id="breadcrumb" class="breadcrumb" aria-label="Element path"></span>
+    <span class="spacer"></span>
+    <span id="save-state"></span>
+  </footer>
+
+  <dialog id="name-dialog" class="dialog">
+    <form method="dialog">
+      <h2 id="name-title">Surround with element</h2>
+      <input id="name-input" list="name-list" type="text" spellcheck="false" autocomplete="off" placeholder="e.g. persName" aria-labelledby="name-title">
+      <datalist id="name-list"></datalist>
+      <p id="name-help" class="muted"></p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn btn-primary" value="ok">OK</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="text-dialog" class="dialog">
+    <form method="dialog">
+      <h2 id="text-title">Name</h2>
+      <input id="text-input" type="text" spellcheck="false" autocomplete="off" aria-labelledby="text-title">
+      <div class="dialog-actions">
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn btn-primary" value="ok">OK</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toasts" class="toasts"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

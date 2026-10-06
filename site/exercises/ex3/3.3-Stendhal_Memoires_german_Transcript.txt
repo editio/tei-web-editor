@@ -1,0 +1,103 @@
+---- Normalised ----
+
+[p. 95]
+
+Zu Paris ist die Zerstreuung zu groß.
+Wie viel Mittel, sich zu vergnügen, gibt es
+da nicht für einen jungen Menschen von zwan-
+zig Jahren, wenn er auch gar keine Aussichten
+auf eine Erbschaft hat! Wie viele Dinge
+nehmen da nicht fortwährend seine Aufmerk-
+samkeit in Anspruch! Wo ist wohl in Paris
+der junge Mensch von zwanzig Jahren, der
+die acht Bände von Montesquieu gelesen hätte,
+in der Absicht, Irrthümer darin zu entdecken?
+
+   Man begreift leicht, daß ich bei der Eile,
+mit welcher ich reise, keine Zeit habe, weder
+die Gesellschaft in der Provinz, noch die jun-
+gen Leute selbst zu sehen; alle diese Urtheile
+sind mir nur von einem Manne von klarem
+und verständigem Geiste, welcher seit 1830 auf
+seinen Gütern wohnt, mitgetheilt worden.
+Beinahe in allen Städten, in denen ich etwas
+verweilte, habe ich junge Leute bemerkt, aus
+denen alles Mögliche werden kann. Ich
+glaube sogar, daß die verdienstvollen Männer
+von 1850 meistens weit von Paris werden
+hergenommen werden. Um ein ausgezeichneter
+
+[p. 96]
+
+Mann zu werden, muß man mit zwanzig
+Jahren dieses Feuer, dieses Zutappen möchte
+ich sagen, besitzen, welches man nur in der
+Provinz hat; und eben so muß man diese
+philosophische, von allem Irrthum freie Aus-
+bildung haben, welche nur in den Pariser
+Collegien erworben wird.
+
+   Allein die Fähigkeit zu wollen man-
+gelt je mehr und mehr zu Paris; gute Bü-
+cher, wie Bayle, Montesquieu, Tocqueville etc.
+werden nicht mehr ernstlich gelesen; man liest
+nur die modernen Albernheiten, und auch die
+nur, um, wie sie erscheinen, darüber reden zu
+können.
+
+
+---- Original ----
+
+[p. 95]
+
+Zu Paris iſt die Zerſtreuung zu groß.
+Wie viel Mittel, ſich zu vergnuͤgen, gibt es
+da nicht fuͤr einen jungen Menſchen von zwan-
+zig Jahren, wenn er auch gar keine Ausſichten
+auf eine Erbſchaft hat! Wie viele Dinge
+nehmen da nicht fortwährend ſeine Aufmerk-
+ſamkeit in Anſpruch! Wo iſt wohl in Paris
+der junge Menſch von zwanzig Jahren, der
+die acht Baͤnde von Monteſquieu geleſen haͤtte,
+in der Abſicht, Irrthuͤmer darin zu entdecken?
+
+   Man begreift leicht, daß ich bei der Eile,
+mit welcher ich reiſe, keine Zeit habe, weder
+die Geſellſchaft in der Provinz, noch die jun-
+gen Leute ſelbſt zu ſehen; alle dieſe Urtheile
+ſind mir nur von einem Manne von klarem
+und verſtaͤndigem Geiſte, welcher ſeit 1830 auf
+ſeinen Guͤtern wohnt, mitgetheilt worden.
+Beinahe in allen Staͤdten, in denen ich etwas
+verweilte, habe ich junge Leute bemerkt, aus
+denen alles Moͤgliche werden kann. Ich
+glaube ſogar, daß die verdienſtvollen Maͤnner
+von 1850 meiſtens weit von Paris werden
+hergenommen werden. Um ein ausgezeichneter
+
+[p. 96]
+
+Mann zu werden, muß man mit zwanzig
+Jahren dieſes Feuer, dieſes Zutappen moͤchte
+ich ſagen, beſitzen, welches man nur in der
+Provinz hat; und eben ſo muß man dieſe
+philoſophiſche, von allem Irrthum freie Aus-
+bildung haben, welche nur in den Pariſer
+Collegien erworben wird.
+
+   Allein die Faͤhigkeit zu wollen man-
+gelt je mehr und mehr zu Paris; gute Buͤ-
+cher, wie Bayle, Monteſquieu, Tocqueville ꝛc.
+werden nicht mehr ernſtlich geleſen; man lieſt
+nur die modernen Albernheiten, und auch die
+nur, um, wie ſie erſcheinen, daruͤber reden zu
+koͤnnen.
+
+Source:
+Stendhal. Memoiren Eines Touristen / Von Dem Verf. Von Rouge Et Noir. Philipps-Universität Marburg, 2010, 95-96 https://doi.org/10.17192/eb2010.0188
+
+ Umlaute mit hochgestelltem e: &#x0364;
+ Langes S: &#x17F;
+ ꝛc. (Abkürzung für etc.): &#xA75B;
+
+oXygen: edit > insert from character map > Combining Latin Small Letter E | Latin Small Letter Long S | Latin Small Letter R Rotunda

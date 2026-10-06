@@ -1,0 +1,24 @@
+import puppeteer from 'puppeteer-core';
+const browser = await puppeteer.launch({ browser: 'firefox', executablePath: '/Applications/Firefox.app/Contents/MacOS/firefox', headless: true });
+const page = await browser.newPage();
+
+const errs = [];
+page.on('pageerror', e => errs.push(e.message));
+page.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
+const t0 = Date.now();
+await page.goto('http://localhost:8765/');
+await page.waitForFunction(() => document.querySelector('#status-valid .label')?.textContent === 'Valid TEI', { timeout: 30000 });
+console.log('Firefox ready in', Date.now() - t0, 'ms');
+await page.select('#doc-select', 'ex1/1.4-Lope-sonnet-1822-done.xml');
+await new Promise(r => setTimeout(r, 800));
+await page.click('[data-tab=preview]');
+await new Promise(r => setTimeout(r, 1500));
+console.log('preview:', await page.evaluate(() => { const d = document.querySelector('#preview-frame').contentDocument; const l = d && d.getElementsByTagName('l')[0]; return l ? getComputedStyle(l).display : 'no l'; }));
+await page.screenshot({ path: process.argv[2] + '/ff.png' });
+await page.click('[data-tab=xpath]');
+await page.type('#xpath-input', '//l[@n="2"]');
+await page.keyboard.press('Enter');
+await new Promise(r => setTimeout(r, 300));
+console.log('xpath:', await page.$eval('#xpath-results', e => e.innerText.replace(/\n+/g, ' ¦ ')));
+console.log('errors:', errs);
+await browser.close();

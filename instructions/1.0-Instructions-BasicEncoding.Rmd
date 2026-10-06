@@ -1,0 +1,127 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# EXERCISE 01 BasicEncoding - INSTRUCTIONS:
+
+## TOOL (Creating a new TEI-XML File)
+
+- Open the **TEI Web Editor** in your web browser: <https://editio.github.io/tei-web-editor/>. Nothing needs to be installed.
+- Select "Exercise 1" in the *Exercise* menu (top left).
+- The editor opens a new TEI All document for you, `empty_tei_all.xml`. You can rename it in the *File name* box, e.g., `lope-sonnet.xml`. (To start another document, click **New**.)
+- Tip! Your work is saved automatically **in this browser only**. Click **Download** to keep a copy of your file (see SAVING YOUR WORK at the end).
+
+All the materials (instructions, scans and transcriptions) are in the **Materials** tab on the right.
+
+## TRANSCRIPTION
+
+- Remove the dummy text "Some text here." between the opening `<p>` and the closing `</p>` within the `<body>` element.
+- Transcribe from the scan "Scan, French 1822 (PDF)" (Materials tab) the sonnet in French (just the text framed in grey boxes) or use the transcription provided "Transcript, French 1822": click on it and then on **Copy text**.
+- Paste (or transcribe directly) the text between the opening `<p>` and the closing `</p>`.
+
+The document should now be well-formed (the **Well-formed** indicator in the toolbar is green).
+
+## ENCODING
+
+You are encoding a sonnet, so you need to add these elements:
+
+- `<l>`, verse line, and `<lg>`, line group (verse lines functioning as a formal unit, e.g., sonnet: 14 verse lines; quatrain: 4 verse lines; tercet: 3 verse lines).
+- Start by removing the opening `<p>` and the closing `</p>`; we don't need them for a sonnet.
+- Don't worry about the red indicator (it means the document is not yet well-formed or not yet valid). The **Problems** tab tells you what is wrong; click on an error to jump to it.
+- Surround the first verse line with the opening `<l>` and the closing `</l>`. Proceed the same way with all lines.
+- Tip! Try a shortcut: Highlight the verse line, press Ctrl + E (Windows) or Cmd + E (Mac), type 'l' in the box that opens (for the element name you want to use), and press Enter.
+- Tip! When you type `<`, the editor suggests the elements allowed at that point. Choose one with the arrow keys and press Enter: the closing tag is added for you.
+
+The document should now be well-formed (the **Well-formed** indicator is green).
+
+- Now encode all line groups, i.e., the sonnet, the 2 quatrains and 2 tercets. Surround with `<lg>` all verse lines (that is the whole sonnet) and go on successively for each quatrain and tercet. The structure should look like:
+
+```
+    <lg>
+    	<lg>
+    		<l>...</l>
+    		<l>...</l>
+    		<l>...</l>
+    		<l>...</l>
+    	</lg>
+    	...
+    </lg>
+
+```
+
+Have a look at the file provided, "1.3 Sonnet: empty structure" (in the *Document* menu), if you have trouble getting it done. Then go back to your own document (under "My documents" in the same menu).
+
+- Now add the attributes `@type` to mark up the strophes and `@n` for the line numbers (remember to add the quotation marks):
+
+  `<lg type="sonnet">` line group for the whole poem.
+
+  `<lg type="quatrain">` line group for a quatrain.
+
+  `<lg type="tercet">` line group for a tercet.
+
+  `<l n="1">` verse line number.
+
+- Tip! Put the cursor inside the start tag just before `>` (`<l↑>`) and press space: the editor suggests the attributes available for this element.
+
+When everything is correct, both indicators are green: **Well-formed** and **Valid TEI**.
+
+### Already done?
+
+*1 option*: The sonnet you have just encoded is part of a theatre play (go check the scanned image "Scan, French 1822 (PDF)"). It is, in fact, part of the speech performed by the character Chacón. How do you encode characters in a theatre play? You need the following elements (check the [TEI Guidelines for 3.12.2 Core Tags for Drama](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#CODR)):
+
+- `<sp>` a speech.
+    - `<speaker>` one or more speakers in a dramatic text.
+    -  `<p>` a prose text.
+
+*2 option*: Navigate through elements in your TEI-XML document.
+
+-  Open the **XPath** tab on the right.
+    - Copy and paste this instruction in the input box `//l` and press Enter. It returns all verse lines in the poem. Click on a result to jump to it in your document.
+    - Copy and paste this instruction in the input box `//l[@n="2"]` and press Enter. It returns the verse line number 2.
+    - Read more about XPath at <https://www.w3schools.com/xml/xpath_intro.asp>
+
+*3 option*: Encoding Metadata (`<teiHeader>`).
+
+Add some descriptive information to your file, e.g., a title to your edition.
+
+- Add a title and an author: `titleStmt -> title`, `titleStmt -> author`.
+
+- Add some bibliographic information to your file. Use the bibliographic information provided in the transcriptions.
+
+```xml
+<sourceDesc>
+    <bibl>[...]</bibl>
+</sourceDesc>
+```
+
+You can be more precise in the bibliographic reference. Inside you need to add following elements and one attribute:
+
+```xml
+<title>
+<editor role="translator">
+<pubPlace>
+<publisher>
+<date>
+```
+
+*4 option*: Visualize your data. See VISUALIZATION
+
+## VISUALIZATION
+
+- Open the **Preview** tab on the right. For now it shows only the XML: a web browser does not know how to display TEI elements until you link a stylesheet to your document.
+- The stylesheet "visualize-tei-xml.css" is provided in the materials (you can see it in the **CSS** tab). To link it, copy and paste the following instruction just before the `<TEI>` root element: `<?xml-stylesheet type="text/css" href="visualize-tei-xml.css"?>`
+- Other option: click **Add it for me** in the Preview tab and the editor adds this line for you. Have a look at the line it created in your document.
+- The preview now shows your document styled with the stylesheet, and it is updated while you type. Click **Open in new tab** to see it in a full browser window.
+- Familiar with CSS stylesheets? Open the **CSS** tab and play around with it: the preview changes immediately. Click **Restore original** to go back to the original stylesheet.
+
+## EXERCISE SOLUTION
+
+- I provided you with a TEI-XML file already encoded "1.4 Sonnet: solution" (in the *Document* menu). Feel free to have a look inside or ask me for help.
+
+## SAVING YOUR WORK
+
+- The editor saves your work automatically, but **only in this browser on this computer** ("Saved in this browser" at the bottom right). It is lost if you use another computer, a private window, or if the browser data is deleted.
+- To keep your file, click **Download** (or press Ctrl + S / Cmd + S). You get a normal `.xml` file in your Downloads folder. You can change the name in the *File name* box before downloading.
+- To continue working on a downloaded file later (or on another computer), click **Open…** and choose the file.

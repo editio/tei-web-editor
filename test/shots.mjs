@@ -1,0 +1,18 @@
+import puppeteer from 'puppeteer-core';
+const out = process.argv[2];
+const browser = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new' });
+const page = await browser.newPage();
+await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
+await page.goto('http://localhost:8765/', { waitUntil: 'networkidle0' });
+await page.waitForFunction(() => document.querySelector('#status-valid .label').textContent.includes('TEI'), { timeout: 15000 });
+console.log('page scrollWidth', await page.evaluate(() => document.documentElement.scrollWidth));
+await page.screenshot({ path: out + '/mobile.png', fullPage: false });
+await page.setViewport({ width: 1280, height: 800 });
+await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+await page.reload({ waitUntil: 'networkidle0' });
+await page.waitForFunction(() => document.querySelector('#status-valid .label').textContent.includes('TEI'), { timeout: 15000 });
+await page.click('[data-tab=resources]');
+await page.click('.resource-btn');
+await new Promise(r => setTimeout(r, 1000));
+await page.screenshot({ path: out + '/dark.png' });
+await browser.close();
