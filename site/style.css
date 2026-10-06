@@ -397,6 +397,7 @@ table.csv th { background: var(--surface-2); }
 .help ul { padding-left: 18px; margin: 0; }
 .help li { margin-bottom: 6px; }
 .ok-text { color: var(--ok); }
+.help a { color: var(--accent); }
 .keys { border-collapse: collapse; font-size: 13px; }
 .keys td { padding: 4px 12px 4px 0; vertical-align: top; }
 

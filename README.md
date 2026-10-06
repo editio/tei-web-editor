@@ -80,3 +80,9 @@ The schema is pre-compiled into `site/schema/tei_all.json`, so validating a docu
 | Save | Autosaved in the browser; **Download** to keep or submit the file |
 
 Not covered: Schematron rules embedded in TEI All (oXygen checks them too), and XSLT transformations.
+
+## Licence
+
+- Code: [MIT](LICENSE), © 2026 José Luis Losada
+- Teaching materials (instructions, exercise files, transcriptions): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- Scans, the TEI schema, fonts and bundled libraries keep their own terms: see [LICENSE-CONTENT.md](LICENSE-CONTENT.md) and [site/THIRD_PARTY_NOTICES.txt](site/THIRD_PARTY_NOTICES.txt)
