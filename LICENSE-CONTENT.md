@@ -4,8 +4,8 @@ This repository contains code and teaching materials under different licences.
 
 | What | Where | Licence |
 |---|---|---|
-| Code of the editor | `src/`, `scripts/`, `test/`, `site/index.html`, `site/style.css`, the editor code in `site/app.js` | [MIT](LICENSE) © 2026 José Luis Losada |
-| Teaching materials: instructions, exercise XML files, CSS stylesheets, transcriptions, CSV tables | `instructions/`, `site/exercises/` (except the scans, see below) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) © 2026 José Luis Losada |
+| Code of the editor | `src/`, `scripts/`, `test/`, `site/index.html`, `site/style.css`, the editor code in `site/app.js` | [MIT](LICENSE) |
+| Teaching materials: instructions, exercise XML files, CSS stylesheets, transcriptions, CSV tables | `instructions/`, `site/exercises/` (except the scans, see below) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | Scans of the historical sources (PDF) | `site/exercises/**/1.2-*.pdf`, `3.2.*.pdf`, `3.3-*_Original.pdf` | **Not covered by the licences above.** The texts themselves are in the public domain; the reproductions are included for teaching, and their terms of use are those of the holding institutions (see below). |
 | TEI schema and documentation derived from it | `site/schema/tei_all.json`, `site/schema/tei_docs.json` | © TEI Consortium, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) and [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause) (TEI P5, <https://tei-c.org>) |
 | Fonts (Noto Sans Mono, Noto Serif; subsets) | `site/fonts/` | [SIL Open Font License 1.1](site/fonts/OFL.txt) © The Noto Project Authors |
