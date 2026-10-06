@@ -1,0 +1,15 @@
+import puppeteer from 'puppeteer-core';
+const browser = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new' });
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900 });
+const errs = []; page.on('pageerror', e => errs.push(e.message)); page.on('requestfailed', r => errs.push('FAILED ' + r.url()));
+const t0 = Date.now();
+await page.goto(process.argv[2] || 'https://editio.github.io/tei-web-editor/', { waitUntil: 'networkidle0' });
+await page.waitForFunction(() => document.querySelector('#status-valid .label').textContent === 'Valid TEI', { timeout: 30000 });
+console.log('valid after', Date.now() - t0, 'ms; file:', await page.$eval('#filename', e => e.value));
+await page.click('[data-tab=resources]');
+await page.click('.resource-btn');
+await new Promise(r => setTimeout(r, 1500));
+console.log('instructions pdf frame:', await page.$eval('.pdf-frame', e => e.src));
+console.log('errors:', errs);
+await browser.close();
